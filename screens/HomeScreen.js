@@ -9,15 +9,25 @@ import {
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { FontAwesome } from "@expo/vector-icons";
-import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
+import {
+	Avatar,
+	Button,
+	Card,
+	Title,
+	Paragraph,
+	IconButton,
+} from "react-native-paper";
 import { SearchBar } from "react-native-elements";
 import { Rating, AirbnbRating } from "react-native-ratings";
 import { locations } from "../assets/locations";
+import { AntDesign } from "@expo/vector-icons";
+
 // import Cards from './components/cards.js'
 
 function HomeScreen() {
 	const [searchtext, setsearchtext] = useState("");
 	const searchResults = [];
+	const wishList = [];
 
 	const searchFunction = (searchtext) => {
 		for (locale in locations) {
@@ -61,8 +71,20 @@ function HomeScreen() {
 							// TODO: need to make sure pic loads on the app
 						/>
 						<Card.Actions>
-							<Button>Cancel</Button>
-							<Button>Ok</Button>
+							{/* <Button>Cancel</Button> */}
+							{/* <Button>Ok</Button> */}
+							<IconButton
+								icon={locations[0].wishlist ? "star" : "star-outline"}
+								animated={true}
+								color={"purple"} //if anal enough, this purple is not default iOS purple
+								size={20}
+								onPress={() => {
+									console.log("starred");
+									locations[0].wishlist = true;
+									wishList.push(locations[0]);
+									//TODO: use useEffect to check and re-render star button
+								}}
+							/>
 						</Card.Actions>
 					</Card>
 				</TouchableOpacity>
@@ -91,8 +113,18 @@ function HomeScreen() {
 						</Card.Content>
 						<Card.Cover source={{ uri: locations[1].imageUri }} />
 						<Card.Actions>
-							<Button>Cancel</Button>
-							<Button>Ok</Button>
+							<IconButton
+								icon={locations[1].wishlist ? "star" : "star-outline"}
+								animated={true}
+								color={"purple"}
+								size={20}
+								onPress={() => {
+									console.log("starred");
+									locations[1].wishlist = true;
+									wishList.push(locations[1]);
+									//TODO: use useEffect to check and re-render star button
+								}}
+							/>
 						</Card.Actions>
 					</Card>
 				</TouchableOpacity>
@@ -133,6 +165,11 @@ export default function homestack() {
 		</Stack.Navigator>
 	);
 }
+
+// function addedToWishlist(i) {
+// 	locations[i].wishlist = true;
+// 	wishList.push(locations[i]);
+// }
 
 const styles = StyleSheet.create({
 	textInput: {

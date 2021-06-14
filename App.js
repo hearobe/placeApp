@@ -5,8 +5,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import FoodScreen from "./screens/FoodScreen";
 import AttractionsScreen from "./screens/AttractionsScreen";
 import HomeScreen from "./screens/HomeScreen";
+import WishlistScreen from "./screens/WishlistScreen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -28,6 +30,8 @@ export default function App() {
 								<MaterialIcons name={iconName} size={size} color={color} />
 							);
 						} else if (route.name === "Food") iconName = "food-fork-drink";
+						else if (route.name === "Wishlist")
+							return <AntDesign name="staro" size={24} color="black" />;
 						//ternary operator ? :-> if ():?
 
 						// You can return any component that you like here!
@@ -48,6 +52,7 @@ export default function App() {
 				<Tab.Screen name="Home" component={HomeScreen} />
 				<Tab.Screen name="Attractions" component={AttractionsScreen} />
 				<Tab.Screen name="Food" component={FoodScreen} />
+				<Tab.Screen name="Wishlist" component={WishlistScreen} />
 			</Tab.Navigator>
 		</NavigationContainer>
 	);
