@@ -31,9 +31,9 @@ function HomeScreen() {
 	const searchResults = [];
 
 	const searchFunction = (searchtext) => {
-		console.log("searchFunction");
+		console.log(searchtext);
 		for (locale of locations) {
-			if (locale.name.tolower() === searchtext.tolower()) {
+			if (locale.name.toLowerCase().includes(searchtext.toLowerCase())) {
 				console.log(locale.name);
 				searchResults.push(locale);
 			}
@@ -46,11 +46,14 @@ function HomeScreen() {
 				<SearchBar
 					onChangeText={(searchtext) => {
 						setsearchtext(searchtext);
+					}}
+					onSubmitEditing={(event) => {
+						setsearchtext(event.nativeEvent.text);
 						searchFunction(searchtext);
 					}}
-					onClearText={() => {
+					value={searchtext}
+					onClear={() => {
 						setsearchtext("");
-						searchFunction("");
 					}}
 					placeholder="where would you like to go?"
 					lightTheme

@@ -12,7 +12,7 @@ export const locations = [
 		longDesc:
 			"Gallop Kranji Farm Resort is a countryside destination located in Kranji, the north-west region of Singapore. Our Resort provides a local farm stay experience.",
 		rating: 4,
-		wishlist: true,
+		wishlist: false,
 	},
 	{
 		name: "Ah Tee Ko Ko Mee",
