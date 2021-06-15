@@ -23,7 +23,7 @@ import HomeScreen from "./HomeScreen";
 import { wishlist } from "../assets/wishlist";
 
 function WishlistScreen({ navigation }) {
-	if (!wishlist || wishlist === []) {
+	if (!wishlist || wishlist.length === 0) {
 		console.log(wishlist);
 		return (
 			<View>
@@ -47,7 +47,7 @@ function WishlistScreen({ navigation }) {
 								{/* <Button>Cancel</Button> */}
 								{/* <Button>Ok</Button> */}
 								<IconButton
-									icon={wishlist[0].wishlist ? "star" : "star-outline"}
+									icon={wishlist[0].wishlisted ? "star" : "star-outline"}
 									animated={true}
 									color={"purple"} //if anal enough, this purple is not default iOS purple
 									size={20}

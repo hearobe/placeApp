@@ -164,7 +164,7 @@ function HomeScreen() {
 								{/* <Button>Cancel</Button> */}
 								{/* <Button>Ok</Button> */}
 								<IconButton
-									icon={locations[0].wishlist ? "star" : "star-outline"}
+									icon={locations[0].wishlisted ? "star" : "star-outline"}
 									animated={true}
 									color={"purple"} //if anal enough, this purple is not default iOS purple
 									size={20}
@@ -203,7 +203,7 @@ function HomeScreen() {
 							<Card.Cover source={{ uri: locations[1].imageUri }} />
 							<Card.Actions>
 								<IconButton
-									icon={locations[1].wishlist ? "star" : "star-outline"}
+									icon={locations[1].wishlisted ? "star" : "star-outline"}
 									animated={true}
 									color={"purple"}
 									size={20}
