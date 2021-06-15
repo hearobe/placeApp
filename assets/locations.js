@@ -12,7 +12,7 @@ export const locations = [
 		longDesc:
 			"Gallop Kranji Farm Resort is a countryside destination located in Kranji, the north-west region of Singapore. Our Resort provides a local farm stay experience.",
 		rating: 4,
-		wishlist: false,
+		wishlist: true,
 	},
 	{
 		name: "Ah Tee Ko Ko Mee",
@@ -26,7 +26,7 @@ export const locations = [
 		longDesc:
 			"Sim Ah Tee, 73, has been a hawker for over 50 years. He started out with a pushcart in Jalan Besar hawking ‘ko ko mee’, fishball noodles which got its name from the seller hitting bamboo with a stick to produce a ‘kok kok’ sound to attract customers. ",
 		rating: 5,
-		wishlist: false,
+		wishlisted: false,
 	},
 	{
 		name: "",
@@ -37,6 +37,6 @@ export const locations = [
 		shortDesc: "",
 		longDesc: "",
 		rating: 4,
-		wishlist: false,
+		wishlisted: false,
 	},
 ];

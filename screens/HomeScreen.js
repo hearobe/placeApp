@@ -21,13 +21,14 @@ import { SearchBar } from "react-native-elements";
 import { Rating, AirbnbRating } from "react-native-ratings";
 import { locations } from "../assets/locations";
 import { AntDesign } from "@expo/vector-icons";
+import { wishlist } from "../assets/wishlist";
 
 // import Cards from './components/cards.js'
 
 function HomeScreen() {
 	const [searchtext, setsearchtext] = useState("");
+	const [wish, setWish] = useState("false");
 	const searchResults = [];
-	const wishList = [];
 
 	const searchFunction = (searchtext) => {
 		for (locale in locations) {
@@ -66,10 +67,7 @@ function HomeScreen() {
 
 							<Paragraph>{locations[0].shortDesc}</Paragraph>
 						</Card.Content>
-						<Card.Cover
-							source={locations[0].image}
-							// TODO: need to make sure pic loads on the app
-						/>
+						<Card.Cover source={{ uri: locations[0].imageUri }} />
 						<Card.Actions>
 							{/* <Button>Cancel</Button> */}
 							{/* <Button>Ok</Button> */}
@@ -79,10 +77,9 @@ function HomeScreen() {
 								color={"purple"} //if anal enough, this purple is not default iOS purple
 								size={20}
 								onPress={() => {
-									console.log("starred");
-									locations[0].wishlist = true;
-									wishList.push(locations[0]);
-									//TODO: use useEffect to check and re-render star button
+									setWish(!locations[0].wishlisted);
+									locations[0].wishlisted = wish;
+									wishlist.push(locations[0]);
 								}}
 							/>
 						</Card.Actions>
@@ -119,9 +116,9 @@ function HomeScreen() {
 								color={"purple"}
 								size={20}
 								onPress={() => {
-									console.log("starred");
-									locations[1].wishlist = true;
-									wishList.push(locations[1]);
+									setWish(!locations[1].wishlisted);
+									locations[1].wishlisted = wish;
+									wishlist.push(locations[1]);
 									//TODO: use useEffect to check and re-render star button
 								}}
 							/>
@@ -165,11 +162,6 @@ export default function homestack() {
 		</Stack.Navigator>
 	);
 }
-
-// function addedToWishlist(i) {
-// 	locations[i].wishlist = true;
-// 	wishList.push(locations[i]);
-// }
 
 const styles = StyleSheet.create({
 	textInput: {

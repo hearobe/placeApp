@@ -13,6 +13,11 @@ import { AntDesign } from "@expo/vector-icons";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+	// for(location of locations){
+	// 	if(location.wishlist === "true")
+
+	// }
+
 	return (
 		<NavigationContainer>
 			<Tab.Navigator
