@@ -31,8 +31,10 @@ function HomeScreen() {
 	const searchResults = [];
 
 	const searchFunction = (searchtext) => {
-		for (locale in locations) {
+		console.log("searchFunction");
+		for (locale of locations) {
 			if (locale.name.tolower() === searchtext.tolower()) {
+				console.log(locale.name);
 				searchResults.push(locale);
 			}
 		}
@@ -42,8 +44,14 @@ function HomeScreen() {
 		<View style={styles.container}>
 			<View style={{ flexDirection: "row", justifyContent: "center" }}>
 				<SearchBar
-					onChangeText={(searchtext) => searchFunction(searchtext)}
-					onClearText={(searchtext) => searchFunction("")}
+					onChangeText={(searchtext) => {
+						setsearchtext(searchtext);
+						searchFunction(searchtext);
+					}}
+					onClearText={() => {
+						setsearchtext("");
+						searchFunction("");
+					}}
 					placeholder="where would you like to go?"
 					lightTheme
 					containerStyle={{ width: "85%" }}
@@ -119,7 +127,6 @@ function HomeScreen() {
 									setWish(!locations[1].wishlisted);
 									locations[1].wishlisted = wish;
 									wishlist.push(locations[1]);
-									//TODO: use useEffect to check and re-render star button
 								}}
 							/>
 						</Card.Actions>
