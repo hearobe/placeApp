@@ -8,11 +8,16 @@ import {
 	TouchableOpacity,
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
+import HawkerScreen from "./HawkerScreen";
+import RestaurantScreen from "./RestaurantScreen";
 
-function ContactsScreen() {
+function FoodScreen({ navigation }) {
 	return (
 		<View style={styles.container}>
-			<TouchableOpacity style={styles.hawkerButton}>
+			<TouchableOpacity
+				style={styles.hawkerButton}
+				onPress={() => navigation.navigate("Hawker Centres")}
+			>
 				<Text style={styles.buttonText}> Hawker Centres</Text>
 				<Image
 					style={styles.image}
@@ -22,7 +27,10 @@ function ContactsScreen() {
 				/>
 			</TouchableOpacity>
 
-			<TouchableOpacity style={styles.Restaurantbutton}>
+			<TouchableOpacity
+				style={styles.Restaurantbutton}
+				onPress={() => navigation.navigate("Restaurants")}
+			>
 				<Text style={styles.buttonText}> Restaurants</Text>
 				<Image
 					style={styles.image2}
@@ -37,10 +45,12 @@ function ContactsScreen() {
 
 const Stack = createStackNavigator();
 
-export default function contactstack() {
+export default function foodstack() {
 	return (
 		<Stack.Navigator>
-			<Stack.Screen name="Singapore food" component={ContactsScreen} />
+			<Stack.Screen name="Singapore Food" component={FoodScreen} />
+			<Stack.Screen name="Hawker Centres" component={HawkerScreen} />
+			<Stack.Screen name="Restaurants" component={RestaurantScreen} />
 		</Stack.Navigator>
 	);
 }
