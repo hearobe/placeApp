@@ -8,87 +8,41 @@ import { createStackNavigator } from "@react-navigation/stack";
 //import SearchableDropdown component
 import SearchableDropdown from "react-native-searchable-dropdown";
 import { locations } from "../assets/locations";
-import { SearchBar } from "react-native-elements";
-import pinballwizard from "./pinballwizard";
+import pinballwizard from "./attractions/pinballwizard";
 
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
-	<TouchableOpacity onPress={() => {}}>
-		<Card style={{ flex: 1, marginBottom: 10 }}>
-			<Card.Title title="" />
-			<Card.Content>
-				{/* <Rating fractions="{1}" startingValue="{3.3}" readonly /> */}
-				<Title>{item.name}</Title>
+// const Item = ({ item, onPress, backgroundColor, textColor }) => (
+// 	<TouchableOpacity onPress={() => {}}>
+// 		<Card style={{ flex: 1, marginBottom: 10 }}>
+// 			<Card.Title title="" />
+// 			<Card.Content>
+// 				{/* <Rating fractions="{1}" startingValue="{3.3}" readonly /> */}
+// 				<Title>{item.name}</Title>
 
-				<Paragraph>{item.shortDesc}</Paragraph>
-			</Card.Content>
-			<Card.Cover source={{ uri: item.imageUri }} />
-			<Card.Actions>
-				{/* <Button>Cancel</Button> */}
-				{/* <Button>Ok</Button> */}
-				<IconButton
-					icon={item.wishlisted ? "star" : "star-outline"}
-					animated={true}
-					color={"purple"} //if anal enough, this purple is not default iOS purple
-					size={20}
-					onPress={() => {
-						// setWish(!locations[0].wishlisted);
-						// locations[0].wishlisted = wish;
-						// wishlist.push(locations[0]);
-					}}
-				/>
-			</Card.Actions>
-		</Card>
-	</TouchableOpacity>
-);
+// 				<Paragraph>{item.shortDesc}</Paragraph>
+// 			</Card.Content>
+// 			<Card.Cover source={{ uri: item.imageUri }} />
+// 			<Card.Actions>
+// 				<IconButton
+// 					icon={item.wishlisted ? "star" : "star-outline"}
+// 					animated={true}
+// 					color={"purple"} //if anal enough, this purple is not default iOS purple
+// 					size={20}
+// 					onPress={() => {}}
+// 				/>
+// 			</Card.Actions>
+// 		</Card>
+// 	</TouchableOpacity>
+// );
 const NestedStack = createStackNavigator();
 
 const App = ({ navigation }) => {
-	const [searched, setSearched] = useState(true);
-	const searchResults = [];
-	// searched = false;
-
-	const renderItem = ({ item }) => {
-		const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
-		const color = item.id === selectedId ? "white" : "black";
-
-		return (
-			<Item
-				item={item}
-				onPress={() => setSelectedId(item.id)}
-				backgroundColor={{ backgroundColor }}
-				textColor={{ color }}
-			/>
-		);
-	};
-
-	const searchFunction = (searchtext) => {
-		console.log(searchtext);
-		if (!searchtext || searchtext === "") {
-			console.log("1");
-			setSearched(false);
-			return;
-		} else {
-			for (locale of locations) {
-				if (locale.name.toLowerCase().includes(searchtext.toLowerCase())) {
-					console.log(locale.name);
-					setSearched(true);
-					console.log(searched);
-					searchResults.push(locale);
-					console.log("results" + searchResults);
-				}
-			}
-			console.log("results" + searchResults);
-		}
-		// if (searchResults.length === 0) {
-		// 	setSearched(false);
-		// }
-		console.log("searched: " + searched);
-		console.log("type: " + typeof searched);
-	};
-
 	return (
 		<NestedStack.Navigator>
-			<NestedStack.Screen name="Search" component={Search} />
+			<NestedStack.Screen
+				name="Search"
+				component={Search}
+				// options={{ headerShown: false }}
+			/>
 			<NestedStack.Screen name="Pinball" component={pinballwizard} />
 		</NestedStack.Navigator>
 	);
@@ -132,18 +86,12 @@ const Search = ({ navigation }) => {
 						placeholder="where would you like to go?"
 						lightTheme
 						items={locations}
-						defaultIndex={2}
+						// defaultIndex={}
 						resetValue={false}
 						underlineColorAndroid="transparent"
 					/>
 				</View>
 			</View>
-			{/* <FlatList
-				data={searchResults}
-				renderItem={renderItem}
-				keyExtractor={(item) => item.id}
-				extraData={searched}
-			/> */}
 		</SafeAreaView>
 	);
 };
