@@ -31,7 +31,7 @@ function HomeScreen({navigation}) {
 	const [searchtext, setsearchtext] = useState("");
 	const [wish, setWish] = useState(false);
 	const searchResults = [];
-	searched = 0;
+	// searched = 0;
 	//0 for nothing searched, 1 for search input matches some data, 2 for search input has no matches
 
 	const searchFunction = (searchtext) => {
