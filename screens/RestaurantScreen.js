@@ -18,38 +18,40 @@ import {
 	IconButton,
 } from "react-native-paper";
 import { SearchBar } from "react-native-elements";
-import { Rating, AirbnbRating } from "react-native-ratings";
 import { restaurants } from "../assets/restaurant";
-import { AntDesign } from "@expo/vector-icons";
 import { wishlist } from "../assets/wishlist";
+import Harry from "./restaurants/HarryScreen";
+import Pink from "./restaurants/PinkScreen";
+import Superhero from "./restaurants/SuperheroScreen";
 
-
-function RestaurantScreen() {
+function RestaurantScreen({ navigation }) {
 	const [searchtext, setsearchtext] = useState("");
 	const [wish, setWish] = useState("false");
 	const searchResults = [];
 
 	const searchFunction = (searchtext) => {
-	//	for (locale in restaurants) {
+		//	for (locale in restaurants) {
 		//	if (locale.name.tolower() === searchtext.tolower()) {
 		//		searchResults.push(locale);
 		//	}
-		}
-
-
+	};
 	return (
 		<View style={styles.container}>
-			<View style={{ flexDirection: "row", justifyContent: "center" }}>
-				<SearchBar
-					onChangeText={(searchtext) => searchFunction(searchtext)}
-					onClearText={(searchtext) => searchFunction("")}
-					placeholder="where would you like to eat?"
-					lightTheme
-					containerStyle={{ width: "85%" }}
-				/>
-			</View>
 			<ScrollView>
-				<TouchableOpacity onPress={() => {}}>
+				{/* <View style={{ flexDirection: "row", justifyContent: "center" }}>
+					<SearchBar
+						onChangeText={(searchtext) => searchFunction(searchtext)}
+						onClearText={(searchtext) => searchFunction("")}
+						placeholder="where would you like to eat?"
+						lightTheme
+						containerStyle={{ width: "85%" }}
+					/>
+				</View> */}
+				<TouchableOpacity
+					onPress={() => {
+						navigation.navigate("Superhero Cafe");
+					}}
+				>
 					<Card style={{ marginBottom: 10 }}>
 						<Card.Content>
 							{/* <Rating fractions="{1}" startingValue="{3.3}" readonly /> */}
@@ -64,11 +66,11 @@ function RestaurantScreen() {
 							<IconButton
 								icon={restaurants[0].wishlist ? "star" : "star-outline"}
 								animated={true}
-								color={"purple"} //if anal enough, this purple is not default iOS purple
+								color={"rgba(255, 190, 6, 0.83)"}
 								size={20}
 								onPress={() => {
-									setWish(!restaurants[0].wishlisted);
-									restaurants[0].wishlisted = wish;
+									setWish(!restaurants[0].wishlist);
+									restaurants[0].wishlist = wish;
 									wishlist.push(restaurants[0]);
 								}}
 							/>
@@ -76,8 +78,12 @@ function RestaurantScreen() {
 					</Card>
 				</TouchableOpacity>
 
-				<TouchableOpacity onPress={() => {}}>
-            <Card style={{ marginBottom: 10 }}>
+				<TouchableOpacity
+					onPress={() => {
+						navigation.navigate("Pink Cafe");
+					}}
+				>
+					<Card style={{ marginBottom: 10 }}>
 						<Card.Content>
 							<Title>{restaurants[1].name}</Title>
 							<Paragraph>{restaurants[1].shortDesc}</Paragraph>
@@ -87,11 +93,11 @@ function RestaurantScreen() {
 							<IconButton
 								icon={restaurants[1].wishlist ? "star" : "star-outline"}
 								animated={true}
-								color={"purple"}
+								color={"rgba(255, 190, 6, 0.83)"}
 								size={20}
 								onPress={() => {
-									setWish(!restaurants[1].wishlisted);
-									restaurants[1].wishlisted = wish;
+									setWish(!restaurants[1].wishlist);
+									restaurants[1].wishlist = wish;
 									wishlist.push(restaurants[1]);
 									//TODO: use useEffect to check and re-render star button
 								}}
@@ -100,7 +106,11 @@ function RestaurantScreen() {
 					</Card>
 				</TouchableOpacity>
 
-				<TouchableOpacity onPress={() => {}}>
+				<TouchableOpacity
+					onPress={() => {
+						navigation.navigate("Harry Potter Cafe");
+					}}
+				>
 					<Card style={{ marginBottom: 10 }}>
 						<Card.Content>
 							<Title>{restaurants[2].name}</Title>
@@ -111,11 +121,11 @@ function RestaurantScreen() {
 							<IconButton
 								icon={restaurants[2].wishlist ? "star" : "star-outline"}
 								animated={true}
-								color={"purple"}
+								color={"rgba(255, 190, 6, 0.83)"}
 								size={20}
 								onPress={() => {
-									setWish(!restaurants[2].wishlisted);
-									restaurants[2].wishlisted = wish;
+									setWish(!restaurants[2].wishlist);
+									restaurants[2].wishlist = wish;
 									wishlist.push(restaurants[2]);
 									//TODO: use useEffect to check and re-render star button
 								}}
@@ -125,29 +135,6 @@ function RestaurantScreen() {
 				</TouchableOpacity>
 			</ScrollView>
 		</View>
-
-		//   <View style={styles.container}>
-		//     <View style={{ flex:1 , flexDirection:'row', justifyContent:"space-evenly"}}>
-		//       <TextInput
-		//         style={styles.textInput}
-		//         placeholder="Search for places to go">
-		//       </TextInput>
-		//       <FontAwesome name="heart-o" size={24} color="black" style={{marginTop:40}}/>
-		//     </View>
-		//     <Card>
-		//   <Card.Title title="Tourist Attraction" subtitle="Marina Bay" />
-		//   <Card.Content>
-		//     <Title>Singapore Flyer</Title>
-		//     <Paragraph>Card content</Paragraph>
-		//   </Card.Content>
-		//   <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
-		//   <Card.Actions>
-		//     <Button>Cancel</Button>
-		//     <Button>Ok</Button>
-		//   </Card.Actions>
-		// </Card>
-
-		//   </View>
 	);
 }
 
@@ -157,6 +144,9 @@ export default function homestack() {
 	return (
 		<Stack.Navigator headerMode="none">
 			<Stack.Screen name="Home" component={RestaurantScreen} />
+			<Stack.Screen name="Superhero Cafe" component={Superhero} />
+			<Stack.Screen name="Pink Cafe" component={Pink} />
+			<Stack.Screen name="Harry Potter Cafe" component={Harry} />
 		</Stack.Navigator>
 	);
 }
@@ -173,7 +163,7 @@ const styles = StyleSheet.create({
 	//},
 	container: {
 		flex: 1,
-		paddingTop: 30,
+
 		backgroundColor: "rgb(225, 232, 238)",
 	},
 });
