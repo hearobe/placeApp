@@ -23,11 +23,11 @@ import { locations } from "../assets/locations";
 import { AntDesign } from "@expo/vector-icons";
 import { wishlist } from "../assets/wishlist";
 import App from "./SearchScreen";
-
+import pinballwizard from "./pinballwizard";
 
 // import Cards from './components/cards.js'
 
-function HomeScreen({navigation}) {
+function HomeScreen({ navigation }) {
 	const [searchtext, setsearchtext] = useState("");
 	const [wish, setWish] = useState(false);
 	const searchResults = [];
@@ -57,14 +57,14 @@ function HomeScreen({navigation}) {
 
 	return (
 		<View style={styles.container}>
-			<View style={{ alignItems: "flex-end",}}>
+			<View style={{ alignItems: "flex-end" }}>
 				<IconButton
-                	icon ='map-search-outline'
-						color={"black"} 
-						size={30}
-						onPress={() => navigation.navigate("Search")}
+					icon="map-search-outline"
+					color={"black"}
+					size={30}
+					onPress={() => navigation.navigate("Search")}
 				/>
-			</View>	
+			</View>
 			{/* <View style={{ flexDirection: "row", justifyContent: "center" }}>
 				<SearchBar
 					onChangeText={(searchtext) => {
@@ -163,8 +163,6 @@ function HomeScreen({navigation}) {
 	);
 }
 
-
-
 const Stack = createStackNavigator();
 
 export default function homestack() {
@@ -172,6 +170,7 @@ export default function homestack() {
 		<Stack.Navigator headerMode="none">
 			<Stack.Screen name="Home" component={HomeScreen} />
 			<Stack.Screen name="Search" component={App} />
+			<Stack.Screen name="Pinball" component={pinballwizard} />
 		</Stack.Navigator>
 	);
 }
