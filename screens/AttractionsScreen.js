@@ -19,32 +19,15 @@ import Constants from "expo-constants";
 import Pinball from "./pinballwizard";
 import { wishlist } from "../assets/wishlist";
 import WishlistScreen from "./WishlistScreen";
-// import { toast } from "react-toastify";
 
 import { FontAwesome } from "@expo/vector-icons";
 import { locations } from "../assets/locations";
 import HomeScreen from "./HomeScreen";
 import { attractions } from "../assets/attraction";
 
-// toast.configure();
-
 function AttractionScreen({ navigation }) {
-  const customId = "custom-id-yes";
-  // const notify = ({ msg }) =>
-  //   toast(msg, {
-  //     position: "top-center",
-  //     autoClose: 1500,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: false,
-  //     draggable: true,
-  //     progress: 1,
-  //     toastId: customId,
-  //   });
-
-  const [wishitem, setList] = useState(wishlist); // for adding into wishlist
   const [list, setlist] = React.useState(attractions);
-
+  const [wish, setWish] = React.useState(true);
   const renderListItem = ({ item }) => (
     <TouchableOpacity onPress={() => {}}>
       <Card style={{ marginBottom: 10 }}>
@@ -66,11 +49,9 @@ function AttractionScreen({ navigation }) {
                   !list_prev_state[item.index].wishlist;
                 return list_prev_state;
               }); // assync execution, problem to update list_prev_state
-
+              setWish(!wish);
+              item.wishlist = wish;
               console.log(`${item.wishlist} ${item.index}`); // for debugging.
-              const msg =
-                (item.wishlist ? "Added to" : "Removed from") + " wish list";
-              notify({ msg });
             }}
           />
         </Card.Actions>
