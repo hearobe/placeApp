@@ -48,6 +48,7 @@ export default function App() {
 							/>
 						);
 					},
+					reRender: true,
 				})}
 				tabBarOptions={{
 					activeTintColor: "orange",
@@ -57,7 +58,7 @@ export default function App() {
 				<Tab.Screen name="Home" component={HomeScreen} />
 				<Tab.Screen name="Attractions" component={AttractionsScreen} />
 				<Tab.Screen name="Food" component={FoodScreen} />
-				<Tab.Screen name="Wishlist" component={WishlistScreen} />
+				<Tab.Screen name="Wishlist" component={WishlistScreen}/>
 			</Tab.Navigator>
 		</NavigationContainer>
 	);

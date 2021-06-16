@@ -27,7 +27,7 @@ import { wishlist } from "../assets/wishlist";
 
 function HomeScreen() {
 	const [searchtext, setsearchtext] = useState("");
-	const [wish, setWish] = useState("false");
+	const [wish, setWish] = useState(false);
 	const searchResults = [];
 	searched = 0;
 	//0 for nothing searched, 1 for search input matches some data, 2 for search input has no matches
