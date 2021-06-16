@@ -62,19 +62,19 @@ const App = () => {
 		);
 	};
 
-    const searchFunction = async (searchtext) => {
+    const searchFunction = (searchtext) => {
 		console.log(searchtext);
 		if (!searchtext || searchtext === "") {
             console.log("1");
 			setSearched(false);
-			await return;
+			return;
 		} else {
 			for (locale of locations) {
 				if (locale.name.toLowerCase().includes(searchtext.toLowerCase())) {
 					console.log(locale.name);
 					setSearched(true);
                     console.log(searched);
-					await searchResults.push(locale);
+					searchResults.push(locale);
                     console.log("results" + searchResults);
 				}
 			}
